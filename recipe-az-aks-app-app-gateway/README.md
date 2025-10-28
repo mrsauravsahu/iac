@@ -254,6 +254,54 @@ Notes about PGVector and DB readiness
 
 ---
 
+### Step 11 — App Service Module
+
+**Objective:** Create a module to deploy Azure App Service for hosting web applications and APIs with proper configuration, scaling capabilities, and integration with existing infrastructure.
+
+**Tasks:**
+
+* Create a `compute_app_service` module that provisions:
+  - App Service Plan [Selection: Linux]
+  - App Service with selected runtime stack
+  - Application Insights for monitoring
+  - Deployment slots for staging/testing
+  - VNet integration for secure connectivity
+* Configure service settings including:
+  - Runtime stack [Selection: Node.js]
+  - Deployment options [Selection: ZIP deployment]
+  - Auto-scaling rules [Selection: None for MVP]
+  - Custom domains and SSL bindings [Selection: None for MVP]
+  - Environment variables and connection strings [Selection: None for MVP]
+* Set up production-grade features:
+  - Staging slots with auto-swap [Selection: Not required for MVP]
+  - Health check path and monitoring [Selection: Not required for MVP]
+  - Backup configuration [Selection: Not required for MVP]
+  - IP restrictions and access rules [Selection: Not required for MVP]
+* Implement security best practices: 
+  - Managed Identity [Selection: System-assigned managed identity]
+  - Key Vault integration for secrets [Selection: Not required for MVP]
+  - Private endpoints for secure access [Selection: Yes]
+  - WAF integration [Selection: Yes, integrate with existing App Gateway]
+  
+**Deliverable:** `modules/compute_app_service` module with:
+- Complete module code and documentation
+- Example usage in `envs/stage/main.tf`
+- Integration examples with existing resources (VNet, App Gateway, Key Vault)
+- Deployment slot configuration for blue-green deployments
+
+**Acceptance Criteria:** 
+- `terraform plan` shows all App Service resources configured correctly
+- App Service can be deployed with both Windows and Linux stacks
+- Auto-scaling works based on defined rules
+- Deployment slots enable zero-downtime deployments
+- VNet integration and private endpoints work when enabled
+- Application Insights provides proper telemetry
+- Custom domains and SSL certificates can be bound
+- WAF rules protect the application via App Gateway integration
+- Security best practices are implemented by default
+
+---
+
 ## Implementation approach & guarantees
 
 * **One step at a time:** I will not implement the next step until you approve the previous step.

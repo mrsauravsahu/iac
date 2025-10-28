@@ -20,6 +20,12 @@ variable "node_count" {
   default     = 1
 }
 
+variable "tags" {
+  description = "Tags to apply to all resources"
+  type        = map(string)
+  default     = {}
+}
+
 variable "node_vm_size" {
   type        = string
   default     = "Standard_A4m_v2"

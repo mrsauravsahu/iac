@@ -22,6 +22,12 @@ variable "resource_group_location" {
   default     = ""
 }
 
+variable "tags" {
+  description = "Tags to apply to all resources"
+  type        = map(string)
+  default     = {}
+}
+
 variable "subnets" {
   type = list(object({
     name       = string
@@ -31,5 +37,6 @@ variable "subnets" {
   default = [
     { name = "aks-subnet" , cidr_block = "10.0.1.0/24" },
     { name = "db-subnet"  , cidr_block = "10.0.2.0/24" },
+    { name = "appgw-subnet", cidr_block = "10.0.3.0/24" },
   ]
 }

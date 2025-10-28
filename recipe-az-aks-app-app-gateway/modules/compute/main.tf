@@ -13,6 +13,8 @@ resource "azurerm_kubernetes_cluster" "this" {
     vnet_subnet_id = var.subnet_id
   }
 
+  tags = var.tags
+
   identity {
     type = "SystemAssigned"
   }
